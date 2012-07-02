@@ -1,0 +1,108 @@
+@plain-text: #fff;
+
+@image-path: "../static/images";
+@sprite-main: url("@{image-path}/sprite-main.png");
+@sprite-front: url("@{image-path}/sprite-front.png");
+
+.clearfix { zoom: 0; }
+.sprite { 
+  background-repeat: no-repeat;
+  .main { background-image: @sprite-main; }
+  .front { background-image: @sprite-front; }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: black;
+}
+
+#header {
+  .clearfix;
+  width: 100%;
+  height: 243px;
+  background-image: url("@{image-path}/headerBG.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  position: fixed;
+
+  #nav {
+    float: left;
+    padding-top: 65px;
+    padding-left: 80px;
+
+    .nav-button {
+      .sprite.main;
+      display: inline-block;
+      height: 14px;
+      margin-right: 30px;
+
+      &.work {
+        width: 70px;
+        background-position: -20px -20px;
+        &:hover { background-position: -180px -20px; }
+      }
+      &.about {
+        width: 82px;
+        background-position: -20px -63px;
+        &:hover { background-position: -180px -63px; }
+      }
+      &.services {
+        width: 120px;
+        background-position: -20px -105px;
+        &:hover { background-position: -180px -105px; }
+      }
+      &.contact {
+        width: 115px;
+        background-position: -20px -147px;
+        &:hover { background-position: -180px -147px; }
+      }
+    }
+  }
+  #connect {
+    float: right;
+    padding-top: 47px;
+    padding-right: 80px;
+
+    * {
+      display: inline-block;
+      margin-right: 20px;
+    }
+
+    .label {
+      .sprite.main;
+      width: 200px;
+      height: 14px;
+      background-position: -20px -20px;
+    }
+
+    .connect-button {
+      .sprite.main;
+      width: 34px;
+      height: 34px;
+
+      &.facebook { background-position: -582px -126px; }
+      &.twitter { background-position: -636px -126px; }
+    }
+    #like-module { }
+  }
+  #logo {
+    .sprite.main;
+    width: 255px;
+    height: 133px;
+    background-position: -326px 0;
+    margin: auto;
+  }
+}
+
+#content {
+  padding-top: 250px;
+  min-height: 1000px;
+  background-image: url("@{image-path}/background.jpg");
+  color: @plain-text;
+
+  h1, h5 {
+    font-family: Georgia;
+    text-align: center;
+  }
+}
