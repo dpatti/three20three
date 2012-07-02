@@ -1,15 +1,28 @@
 @plain-text: #fff;
+@highlight-text: #9db2ff;
 
 @image-path: "../static/images";
 @sprite-main: url("@{image-path}/sprite-main.png");
-@sprite-front: url("@{image-path}/sprite-front.png");
+@sprite-work: url("@{image-path}/sprite-work.png");
 
 .clearfix { zoom: 0; }
 .sprite { 
   background-repeat: no-repeat;
   .main { background-image: @sprite-main; }
-  .front { background-image: @sprite-front; }
+  .work { background-image: @sprite-work; }
 }
+.highlight { color: @highlight-text; }
+
+h1 {
+  font-family: Georgia;
+  font-size: 60px;
+}
+
+h5 {
+  font-size: 25px;
+}
+
+img { border: 0; }
 
 body {
   margin: 0;
@@ -19,6 +32,7 @@ body {
 
 #header {
   .clearfix;
+  z-index: 100;
   width: 100%;
   height: 243px;
   background-image: url("@{image-path}/headerBG.png");
@@ -96,13 +110,61 @@ body {
 }
 
 #content {
-  padding-top: 250px;
+  padding-top: 140px;
   min-height: 1000px;
   background-image: url("@{image-path}/background.jpg");
+  background-position: top center;
+  background-repeat: no-repeat;
   color: @plain-text;
+  text-align: center;
 
-  h1, h5 {
-    font-family: Georgia;
-    text-align: center;
+  h5 {
+    margin: -40px auto 20px;
+    width: 1000px;
+  }
+
+  #tiles {
+    position: relative;
+    margin: 120px auto;
+    width: 1290px;
+
+    img {
+      .sprite.work;
+      position: absolute;
+      cursor: pointer;
+
+      &.cinema {
+        background-position: -20px -540px;
+        width: 470px;
+        height: 470px;
+        &:hover { background-position: -20px -20px; }
+        left: 0px;
+        top: 0px;
+      }
+      &.tomlin {
+        background-position: -560px -540px;
+        width: 230px;
+        height: 470px;
+        &:hover { background-position: -560px -20px; }
+        left: 500px;
+        top: 0px;
+      }
+      &.dawning {
+        background-position: -860px -540px;
+        width: 531px;
+        height: 220px;
+        &:hover { background-position: -860px -20px; }
+        left: 760px;
+        top: 0px;
+      }
+      &.intro {
+        background-position: -860px -790px;
+        width: 531px;
+        height: 220px;
+        &:hover { background-position: -860px -270px; }
+        left: 760px;
+        top: 250px;
+      }
+    }
   }
 }
