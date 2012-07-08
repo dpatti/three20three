@@ -20,7 +20,7 @@ task :setup_directory do
 end
 
 def check_file_updates(sources, destination, task)
-  return Rake::Task[task].invoke unless File.exist? destination
+  return Rake::Task[task].execute unless File.exist? destination
 
   # Test last compile
   last_mod = File.stat(destination).mtime
@@ -28,7 +28,7 @@ def check_file_updates(sources, destination, task)
   # Test each file
   Dir[sources].each do |file|
     if File.stat(file).mtime > last_mod
-      return Rake::Task[task].invoke
+      return Rake::Task[task].execute
     end
   end
 end
@@ -43,11 +43,15 @@ task :compile_css do
 
   parser = Less::Parser.new
   puts "Compiling css to #{ css_output }"
+
+  output = ""
+  Dir[css_files].each do |sheet|
+    puts "  #{ sheet }"
+    output << parser.parse(File.read(sheet)).to_css(:compress => true)
+  end
+
   File.open css_output, "w+" do |f|
-    Dir[css_files].each do |sheet|
-      puts "  #{ sheet }"
-      f.write parser.parse(File.read(sheet)).to_css :compress => true
-    end
+    f.write output
   end
 end
 
@@ -55,11 +59,14 @@ task :compile_js do
   require 'coffee-script'
 
   puts "Compiling js to #{ js_output }"
+  output = ""
+  Dir[js_files].each do |script|
+    puts "  #{ script }"
+    output << CoffeeScript.compile(File.read(script))
+  end
+
   File.open js_output, "w+" do |f|
-    Dir[js_files].each do |script|
-      puts "  #{ script }"
-      f.write CoffeeScript.compile File.read(script)
-    end
+    f.write output
   end
 end
 
@@ -120,9 +127,7 @@ task :start_server do
         Rake::Task[:lazy_compile].execute
       when /\.html/
         # See if we need to update the file
-        compiled = File.stat("bin/#{ file }").mtime rescue -1
-        working = File.stat("src/templates").mtime rescue -1
-        Rake::Task[:templates].execute if working > compiled
+        Rake::Task[:templates].execute
       end
 
       if File.file? "bin/#{ dir }/#{ file }"
