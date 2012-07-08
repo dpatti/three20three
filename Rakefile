@@ -101,3 +101,49 @@ task :rsync do
   puts "Pushing to production..."
   puts `rsync -rL bin/* "#{ config[:user] }@#{ config[:host] }:#{ config[:directory] }"`
 end
+
+task :serve => [:build, :start_server]
+
+task :start_server do
+  require 'webrick'
+  require 'mime/types'
+
+  # Starts a server for development use
+  servlet = Class.new(WEBrick::HTTPServlet::AbstractServlet) do
+    def do_GET(req, res)
+      dir, file = File.split req.path
+
+      case req.path
+      when /(\.css|\.js)/
+        # Make sure our assets are up to date
+        Rake::Task[:lazy_compile].invoke
+      else /\.html/
+        # See if we need to update the file
+        file = "index.html" if file == "/" or file == ""
+
+        current = File.stat("bin/#{ file }").mtime rescue -1
+        working = File.stat("src/templates/#{ file }").mtime rescue -1
+        Rake::Task[:templates].invoke if working > current
+      end
+
+      if File.file? "bin/#{ dir }/#{ file }"
+        res.status = 200
+        puts file
+        res['Content-Type'] = MIME::Types.type_for(file).first.content_type
+        res.body = File.read "bin/#{ dir }/#{ file }"
+      else
+        res.status = 404
+        res.body = "File not found: #{ req.path }"
+      end
+    end
+  end
+
+  server = WEBrick::HTTPServer.new(:Port => 8338)
+  server.mount('/', servlet)
+
+  %w( INT TERM ).each do |sig|
+    trap(sig) { server.shutdown }
+  end
+
+  server.start
+end
