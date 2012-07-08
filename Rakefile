@@ -8,7 +8,7 @@ js_files = "src/static/js/*.coffee"
 js_libraries = "src/static/js/lib/*.js"
 js_output = "bin/static/script.js"
 
-task :default => [:build, :push]
+task :default => [:build]
 
 task :build => [:setup_directory, :lazy_compile, :templates]
 
@@ -66,12 +66,10 @@ task :compile_js do
     output << File.read(lib)
   end
   # Local stuff
-  coffee = ""
   Dir[js_files].each do |script|
     puts "  #{ script }"
-    coffee << File.read(script)
+    output << CoffeeScript.compile(File.read(script), :no_wrap => true)
   end
-  output << CoffeeScript.compile(coffee)
 
   File.open js_output, "w+" do |f|
     f.write output
