@@ -33,15 +33,17 @@ $(->
             .attr('src', "static/images/tiles/#{ cfg.image }.png")
         .append $("<img>")
             .attr('src', "")
-            # .hover ->
-            #   # Fade to rollover
-            # , ->
-            #   # Fade back
+        .hover ->
+          # Fade to rollover
+          $(@)
+        , ->
+          # Fade back
+          $(@)
     )
 
   render_tiles = ->
     for name, tile of tiles
       tile.render()
 
-  # render_tiles()
+  render_tiles()
 )
