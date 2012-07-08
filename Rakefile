@@ -5,6 +5,7 @@ css_files = "src/static/css/*.less"
 css_output = "bin/static/style.css"
 
 js_files = "src/static/js/*.coffee"
+js_libraries = "src/static/js/lib/*.js"
 js_output = "bin/static/script.js"
 
 task :default => [:build, :push]
@@ -60,10 +61,17 @@ task :compile_js do
 
   puts "Compiling js to #{ js_output }"
   output = ""
+  # Libraries
+  Dir[js_libraries].each do |lib|
+    output << File.read(lib)
+  end
+  # Local stuff
+  coffee = ""
   Dir[js_files].each do |script|
     puts "  #{ script }"
-    output << CoffeeScript.compile(File.read(script))
+    coffee << File.read(script)
   end
+  output << CoffeeScript.compile(coffee)
 
   File.open js_output, "w+" do |f|
     f.write output
