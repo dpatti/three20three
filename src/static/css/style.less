@@ -126,37 +126,39 @@ body {
   #tiles {
     position: relative;
     margin: 120px auto;
-    min-width: 1000px;
-    max-width: 1290px;
-    height: 470px;
+    padding: 50px;
 
-    img {
-      position: absolute;
-      cursor: pointer;
+    .container {
+      min-width: 800px;
+      max-width: 1290px;
+      height: 470px;
+      position: relative;
+      margin: 0 auto;
 
-      &.cinema {
-        width: 36.4%;
-        &:hover { background-position: -20px -20px; }
-        left: 0%;
-        top: 0%;
-      }
-      &.tomlin {
-        width: 17.8%;
-        &:hover { background-position: -560px -20px; }
-        left: 38.7%;
-        top: 0%;
-      }
-      &.dawning {
-        width: 41.1%;
-        &:hover { background-position: -860px -20px; }
-        left: 58.8%;
-        top: 0%;
-      }
-      &.intro {
-        width: 41.1%;
-        &:hover { background-position: -860px -270px; }
-        left: 58.8%;
-        top: 58.8%;
+      img {
+        position: absolute;
+        cursor: pointer;
+
+        &.cinema {
+          width: 36.4%;
+          left: 0%;
+          top: 0%;
+        }
+        &.tomlin {
+          width: 17.8%;
+          left: 38.7%;
+          top: 0%;
+        }
+        &.dawning {
+          width: 41.1%;
+          left: 58.8%;
+          top: 0%;
+        }
+        &.intro {
+          width: 41.1%;
+          left: 58.8%;
+          top: 53.1%;
+        }
       }
     }
   }
