@@ -104,7 +104,7 @@ task :templates do
   cd path
 end
 
-task :push => [:minify_js, :rsync]
+task :push => [:build, :minify_js, :rsync]
 
 task :rsync do
   require 'psych'
