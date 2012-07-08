@@ -112,23 +112,21 @@ task :start_server do
   servlet = Class.new(WEBrick::HTTPServlet::AbstractServlet) do
     def do_GET(req, res)
       dir, file = File.split req.path
+      file = "index.html" if file == "/" or file == ""
 
-      case req.path
+      case file
       when /(\.css|\.js)/
         # Make sure our assets are up to date
-        Rake::Task[:lazy_compile].invoke
-      else /\.html/
+        Rake::Task[:lazy_compile].execute
+      when /\.html/
         # See if we need to update the file
-        file = "index.html" if file == "/" or file == ""
-
-        current = File.stat("bin/#{ file }").mtime rescue -1
-        working = File.stat("src/templates/#{ file }").mtime rescue -1
-        Rake::Task[:templates].invoke if working > current
+        compiled = File.stat("bin/#{ file }").mtime rescue -1
+        working = File.stat("src/templates").mtime rescue -1
+        Rake::Task[:templates].execute if working > compiled
       end
 
       if File.file? "bin/#{ dir }/#{ file }"
         res.status = 200
-        puts file
         res['Content-Type'] = MIME::Types.type_for(file).first.content_type
         res.body = File.read "bin/#{ dir }/#{ file }"
       else
