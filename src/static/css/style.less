@@ -41,9 +41,9 @@ body {
   position: fixed;
 
   #nav {
-    float: left;
+    position: absolute;
     padding-top: 65px;
-    padding-left: 80px;
+    left: 5%;
 
     .nav-button {
       .sprite.main;
@@ -74,9 +74,9 @@ body {
     }
   }
   #connect {
-    float: right;
+    position: absolute;
     padding-top: 47px;
-    padding-right: 80px;
+    right: 5%;
 
     * {
       display: inline-block;
@@ -136,9 +136,18 @@ body {
     max-width: 1290px;
     height: 470px;
 
-    img {
+    .tile {
       position: absolute;
       cursor: pointer;
+
+      img { width: 100%; }
+
+      .rollover {
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
   }
 }
