@@ -30,6 +30,16 @@ body {
   background-color: black;
 }
 
+#dim {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100%;
+}
+
 #header {
   .clearfix;
   z-index: 100;
@@ -40,78 +50,73 @@ body {
   background-repeat: no-repeat;
   position: fixed;
 
-  #nav {
-    position: absolute;
-    padding-top: 65px;
-    left: 5%;
+  .container {
+    width: 960px;
+    position: relative;
+    margin: 0 auto;
 
-    .nav-button {
+    #nav {
+      position: absolute;
+      padding-top: 56px;
+      left: 0;
+
+      .nav-button {
+        .sprite.main;
+        display: inline-block;
+        height: 12px;
+        margin-right: 30px;
+
+        &.work {
+          width: 70px;
+          background-position: -150px -16px;
+          &:hover { background-position: 0 -18px; }
+        }
+        &.about {
+          width: 82px;
+          background-position: -150px -37px;
+          &:hover { background-position: 0 -35px; }
+        }
+        &.services {
+          width: 120px;
+          background-position: -149px 0;
+          &:hover { background-position: 0 0; }
+        }
+      }
+    }
+    #connect {
+      position: absolute;
+      padding-top: 8px;
+      right: 0;
+
+      * {
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      .connect-button {
+        .sprite.main;
+        width: 56px;
+        height: 56px;
+        position: relative;
+        top: 8px;
+
+        &.email { background-position: -297px -58px; }
+        &.facebook { background-position: -298px -117px; }
+        &.youtube { background-position: -298px 0; }
+      }
+
+      .fb-like {
+        position: relative;
+        top: -2px;
+      }
+    }
+    #logo {
       .sprite.main;
-      display: inline-block;
-      height: 14px;
-      margin-right: 30px;
-
-      &.work {
-        width: 70px;
-        background-position: -20px -20px;
-        &:hover { background-position: -180px -20px; }
-      }
-      &.about {
-        width: 82px;
-        background-position: -20px -63px;
-        &:hover { background-position: -180px -63px; }
-      }
-      &.services {
-        width: 120px;
-        background-position: -20px -105px;
-        &:hover { background-position: -180px -105px; }
-      }
-      &.contact {
-        width: 115px;
-        background-position: -20px -147px;
-        &:hover { background-position: -180px -147px; }
-      }
+      width: 252px;
+      height: 119px;
+      background-position: 0 -58px;
+      margin: 20px auto;
     }
-  }
-  #connect {
-    position: absolute;
-    padding-top: 47px;
-    right: 5%;
-
-    * {
-      display: inline-block;
-      margin-right: 20px;
-    }
-
-    .label {
-      .sprite.main;
-      width: 235px;
-      height: 14px;
-      background-position: -20px -199px;
-    }
-
-    .connect-button {
-      .sprite.main;
-      width: 34px;
-      height: 34px;
-      position: relative;
-      top: 8px;
-
-      &.facebook { background-position: -582px -126px; }
-      &.twitter { background-position: -636px -126px; }
-    }
-
-    .fb-like {
-      position: relative;
-      top: -2px;
-    }
-  }
-  #logo {
-    .sprite.main;
-    width: 255px;
-    height: 133px;
-    background-position: -326px 0;
-    margin: auto;
   }
 }
 
@@ -129,11 +134,19 @@ body {
     width: 1000px;
   }
 
+  #introtext {
+    margin: 0 auto;
+    background-image: url("@{image-path}/index/introtext.png");
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 960px;
+    height: 267px;
+  }
+
   #tiles {
     position: relative;
     margin: 120px auto;
-    min-width: 1000px;
-    max-width: 1290px;
+    width: 960px;
     height: 470px;
 
     .tile {
@@ -148,6 +161,14 @@ body {
         top: 0;
         left: 0;
       }
+
+    }
+
+    .popout {
+      position: absolute;
+      z-index: 60;
+
+      img { width: 100%; }
     }
   }
 }
