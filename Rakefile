@@ -112,7 +112,7 @@ task :rsync do
   config = config[:production]
 
   puts "Pushing to production..."
-  puts `rsync -rL bin/* "#{ config[:user] }@#{ config[:host] }:#{ config[:directory] }"`
+  puts `rsync -rL --delete bin/* "#{ config[:user] }@#{ config[:host] }:#{ config[:directory] }"`
 end
 
 task :serve => [:build, :start_server]
