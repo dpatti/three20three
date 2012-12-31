@@ -16,9 +16,9 @@ class Tile
         , ->
           # Fade back
           $(@).find('.rollover').animate(opacity: 0, 100)
-        .click @popout
+        .click @click
 
-  position: () ->
+  position: ->
     return @cache if @cache
 
     if @anchor?.to
@@ -39,7 +39,7 @@ class Tile
       bottom: top + @size.height
     }
 
-  render: () ->
+  render: ->
     delete @cache
     { left, top, right } = @position()
     $("#tiles").append(@tile.css {
@@ -48,62 +48,44 @@ class Tile
       width: right - left
     })
 
-  popout: (e) =>
-    return unless @expand
-
+  click: (e) =>
+    return unless @popout
     e.stopPropagation()
 
-    @pop_el ?=
-      $("<div>")
-        .addClass('popout')
-        .append($("<img>", src: "static/images/tiles/#{ @image }-popup.png"))
+    Popout.get().show _.defaults @popout, { @image }
 
-    # Setup popup corner and dims
-    dims = { }
-    corners = _.map(_.first(_.keys(@expand), 2),
-      (desc) -> desc.split(/(?=left|right)/))
-    tiles = _.map(_.first(_.values(@expand), 2),
-      (tile) => @tiles[tile].position())
+class Popout
+  @get: ->
+    @instance ?= new Popout()
 
-    # First key is our anchor point
-    for prop  in _.first(corners)
-      dims[prop] = _.first(tiles)[prop]
+  constructor: ->
+    @el = $('#popout')
 
-    # Second key is our sizing
-    alignment = _.intersection(_.first(corners), _.last(corners))
-    get_sizing = (min, max) ->
-      _.max(_.pluck(tiles, max)) - _.min(_.pluck(tiles, min))
+  show: (cfg) ->
+    return if @el.is(':visible')
+    @set_image(cfg.image, cfg.offset)
+    @set_content(cfg.content)
+    @el.fadeIn()
 
-    if "left" in alignment or "right" in alignment
-      dims.height = get_sizing 'top', 'bottom'
-    else
-      dims.width = get_sizing 'left', 'right'
+  set_image: (image, offset) ->
+    @el.find('img.header')
+      .attr(src: "static/images/popouts/#{ image }.png")
+      .css(top: -offset)
 
-    @pop_el.css(dims)
-    @pop_el.show().animate(opacity: 1, 300)
-    $("#dim").fadeIn()
+  set_content: (content) ->
+    @el.find('iframe.content')
+      .attr(src: content)
 
-  popin: =>
-    @pop_el?.animate(opacity: 0, -> $(@).hide())
-    $("#dim").fadeOut()
+  hide: ->
+    @el.fadeOut()
 
-$(->
+$ ->
   tiles = {}
   for name, cfg of work.tiles
     # Create tile
     tiles[name] = new Tile name, tiles, _.extend(cfg, spacing: work.spacing)
-
-  render_tiles = _.debounce ->
-    for name, tile of tiles
-      tile.render()
-  , 250
-
-  render_tiles()
+    tiles[name].render()
 
   $(document).click ->
     for name, tile of tiles
-      tile.popin()
-
-
-  $("#content").append($("<div>", id: "dim").hide())
-)
+      Popout.get().hide()

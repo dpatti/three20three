@@ -8,6 +8,10 @@ work =
         height: 220
       anchor:
         to: ''
+      popout:
+        image: 'graphics+cinematography'
+        offset: 175
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     passion:
       image: 'pittintro'
@@ -17,6 +21,9 @@ work =
       anchor:
         to: 'cinema'
         point: 'topright'
+      popout:
+        offset: 265
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     graphics:
       image: 'graphics'
@@ -26,6 +33,10 @@ work =
       anchor:
         to: 'cinema'
         point: 'bottomleft'
+      popout:
+        image: 'graphics+cinematography'
+        offset: 175
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     tomlin:
       image: 'tomlinshow'
@@ -35,6 +46,9 @@ work =
       anchor:
         to: 'graphics'
         point: 'topright'
+      popout:
+        offset: 295
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     digest:
       image: 'digest'
@@ -44,6 +58,9 @@ work =
       anchor:
         to: 'tomlin'
         point: 'topright'
+      popout:
+        offset: 350
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     cathedral:
       image: 'fieldpass-cathedral'
@@ -53,6 +70,9 @@ work =
       anchor:
         to: 'graphics'
         point: 'bottomleft'
+      popout:
+        offset: 255
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     youth:
       image: 'youthfootball'
@@ -62,6 +82,9 @@ work =
       anchor:
         to: 'cathedral'
         point: 'topright'
+      popout:
+        offset: 250
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     field:
       image: 'fieldpass2'
@@ -71,3 +94,6 @@ work =
       anchor:
         to: 'youth'
         point: 'topright'
+      popout:
+        offset: 350
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
