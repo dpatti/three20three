@@ -67,8 +67,7 @@ class Popout
     @background.fadeIn()
     @set_image(cfg.image, cfg.offset)
     @set_content(cfg.content)
-    @el.fadeIn()
-    $('#tiles img:last').get(0).scrollIntoView(false)
+    @scroll_content => @el.fadeIn()
 
   set_image: (image, offset) ->
     @el.find('img.header')
@@ -78,6 +77,12 @@ class Popout
   set_content: (content) ->
     @el.find('iframe.content')
       .attr(src: content)
+
+  scroll_content: (next) ->
+    # Anchor based on the bottom image's distance from the bottom of the window
+    $('html,body').animate
+      scrollTop: 1120 - $(window).height()
+    , 250, next
 
   hide: ->
     @background.fadeOut()
