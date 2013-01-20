@@ -1,11 +1,11 @@
 work =
-  spacing: 30
+  spacing: 22
   tiles:
     cinema:
       image: 'cinematography'
       size:
-        width: 531
-        height: 220
+        width: 395
+        height: 164
       anchor:
         to: ''
       popout:
@@ -16,8 +16,8 @@ work =
     passion:
       image: 'pittintro'
       size:
-        width: 730
-        height: 220
+        width: 543
+        height: 164
       anchor:
         to: 'cinema'
         point: 'topright'
@@ -28,8 +28,8 @@ work =
     graphics:
       image: 'graphics'
       size:
-        width: 531
-        height: 220
+        width: 395
+        height: 165
       anchor:
         to: 'cinema'
         point: 'bottomleft'
@@ -41,8 +41,8 @@ work =
     tomlin:
       image: 'tomlinshow'
       size:
-        width: 350
-        height: 220
+        width: 261
+        height: 165
       anchor:
         to: 'graphics'
         point: 'topright'
@@ -53,8 +53,8 @@ work =
     digest:
       image: 'digest'
       size:
-        width: 350
-        height: 220
+        width: 261
+        height: 165
       anchor:
         to: 'tomlin'
         point: 'topright'
@@ -65,8 +65,8 @@ work =
     cathedral:
       image: 'fieldpass-cathedral'
       size:
-        width: 730
-        height: 220
+        width: 543
+        height: 164
       anchor:
         to: 'graphics'
         point: 'bottomleft'
@@ -77,8 +77,8 @@ work =
     youth:
       image: 'youthfootball'
       size:
-        width: 250
-        height: 220
+        width: 187
+        height: 164
       anchor:
         to: 'cathedral'
         point: 'topright'
@@ -89,8 +89,8 @@ work =
     field:
       image: 'fieldpass2'
       size:
-        width: 250
-        height: 220
+        width: 186
+        height: 164
       anchor:
         to: 'youth'
         point: 'topright'
