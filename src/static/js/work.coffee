@@ -86,7 +86,7 @@ class Popout
     # Anchor based on the bottom image's distance from the bottom of the window
     $('html,body').animate
       scrollTop: 1120 - $(window).height()
-    , 250, next
+    , 400, next
 
   hide: ->
     @locked = false
