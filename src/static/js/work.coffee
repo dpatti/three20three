@@ -61,6 +61,9 @@ class Popout
   constructor: ->
     @el = $('#popout')
     @background = $('#blackout')
+    $('body,html').bind 'DOMMouseScroll mousewheel', (e) =>
+     if @locked and (e.which > 0 or e.type == "mousedown" or e.type == "mousewheel")
+       e.preventDefault()
 
   show: (cfg) ->
     return if @el.is(':visible')
@@ -68,6 +71,7 @@ class Popout
     @set_image(cfg.image, cfg.offset)
     @set_content(cfg.content)
     @scroll_content => @el.fadeIn()
+    @locked = true
 
   set_image: (image, offset) ->
     @el.find('img.header')
@@ -85,6 +89,7 @@ class Popout
     , 250, next
 
   hide: ->
+    @locked = false
     @background.fadeOut()
     @el.fadeOut()
 
