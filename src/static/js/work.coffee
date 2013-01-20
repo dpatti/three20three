@@ -60,12 +60,15 @@ class Popout
 
   constructor: ->
     @el = $('#popout')
+    @background = $('#blackout')
 
   show: (cfg) ->
     return if @el.is(':visible')
+    @background.fadeIn()
     @set_image(cfg.image, cfg.offset)
     @set_content(cfg.content)
     @el.fadeIn()
+    $('#tiles img:last').get(0).scrollIntoView(false)
 
   set_image: (image, offset) ->
     @el.find('img.header')
@@ -77,6 +80,7 @@ class Popout
       .attr(src: content)
 
   hide: ->
+    @background.fadeOut()
     @el.fadeOut()
 
 $ ->

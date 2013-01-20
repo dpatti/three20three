@@ -1,5 +1,5 @@
 work =
-  spacing: 22
+  spacing: 21
   tiles:
     cinema:
       image: 'cinematography'
