@@ -69,9 +69,13 @@ class Popout
     return if @locked
     @background.fadeIn()
     @set_image(cfg.image, cfg.offset)
-    @set_content(cfg.content)
-    # Don't fade in if we already triggered a hide
-    @scroll_content => @el.fadeIn() if @locked
+    @scroll_content =>
+      # Don't fade in if we already triggered a hide
+      if @locked
+        @el.fadeIn =>
+          # Delay setting flash video so we don't get some weird
+          # partial-transparency display bug
+          @set_content(cfg.content)
     @locked = true
 
   set_image: (image, offset) ->
@@ -99,7 +103,7 @@ class Popout
         # Clear the video and image to stop background music and prevent flash
         # of content when the next popup is triggered
         @set_image('', 0)
-        @set_content('')
+        @set_content('about:blank')
 
 $ ->
   tiles = {}
