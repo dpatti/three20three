@@ -80,13 +80,12 @@ class Popout
 
   set_image: (image, offset) ->
     @el.find('img.header')
-      .attr(src: "/static/images/popouts/#{ image }.png")
+      .attr(src: image and "/static/images/popouts/#{ image }.png")
       .css(top: -offset)
 
   set_content: (content) ->
     @el.find('iframe.content')
-      # Transparent wmode parameter so that we can z-index over the video
-      .attr(src: "#{ content }?wmode=transparent")
+      .attr(src: content)
 
   scroll_content: (next) ->
     # Anchor based on the bottom image's distance from the bottom of the window
@@ -95,6 +94,7 @@ class Popout
     , 400, next
 
   hide: ->
+    return unless @locked
     @locked = false
     @background
       .add(@el)

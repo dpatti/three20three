@@ -11,7 +11,7 @@ work =
       popout:
         image: 'graphics+cinematography'
         offset: 175
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     passion:
       image: 'pittintro'
@@ -23,7 +23,7 @@ work =
         point: 'topright'
       popout:
         offset: 195
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     graphics:
       image: 'graphics'
@@ -36,7 +36,7 @@ work =
       popout:
         image: 'graphics+cinematography'
         offset: 175
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     tomlin:
       image: 'tomlinshow'
@@ -48,7 +48,7 @@ work =
         point: 'topright'
       popout:
         offset: 190
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     digest:
       image: 'digest'
@@ -60,7 +60,7 @@ work =
         point: 'topright'
       popout:
         offset: 200
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     cathedral:
       image: 'fieldpass-cathedral'
@@ -72,7 +72,7 @@ work =
         point: 'bottomleft'
       popout:
         offset: 190
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     youth:
       image: 'youthfootball'
@@ -84,7 +84,7 @@ work =
         point: 'topright'
       popout:
         offset: 251
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     field:
       image: 'fieldpass2'
@@ -96,4 +96,4 @@ work =
         point: 'topright'
       popout:
         offset: 353
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s'
+        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
