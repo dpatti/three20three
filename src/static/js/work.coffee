@@ -6,9 +6,9 @@ class Tile
     @tile =
       $("<div>")
         .addClass('tile')
-        .append($("<img>", src: "static/images/tiles/#{ @image }.jpg")
+        .append($("<img>", src: "/static/images/tiles/#{ @image }.jpg")
           .addClass('standard'))
-        .append($("<img>", src: "static/images/tiles/#{ @image }-rollover.jpg")
+        .append($("<img>", src: "/static/images/tiles/#{ @image }-rollover.jpg")
           .addClass('rollover'))
         .hover ->
           # Fade to rollover
@@ -80,7 +80,7 @@ class Popout
 
   set_image: (image, offset) ->
     @el.find('img.header')
-      .attr(src: "static/images/popouts/#{ image }.png")
+      .attr(src: "/static/images/popouts/#{ image }.png")
       .css(top: -offset)
 
   set_content: (content) ->
