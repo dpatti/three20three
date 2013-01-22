@@ -22,7 +22,7 @@ work =
         to: 'cinema'
         point: 'topright'
       popout:
-        offset: 265
+        offset: 195
         content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     graphics:
@@ -47,7 +47,7 @@ work =
         to: 'graphics'
         point: 'topright'
       popout:
-        offset: 295
+        offset: 190
         content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     digest:
@@ -59,7 +59,7 @@ work =
         to: 'tomlin'
         point: 'topright'
       popout:
-        offset: 350
+        offset: 200
         content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     cathedral:
@@ -71,7 +71,7 @@ work =
         to: 'graphics'
         point: 'bottomleft'
       popout:
-        offset: 255
+        offset: 190
         content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     youth:
@@ -83,7 +83,7 @@ work =
         to: 'cathedral'
         point: 'topright'
       popout:
-        offset: 250
+        offset: 251
         content: 'http://www.youtube.com/embed/iLg7Oddge1s'
 
     field:
@@ -95,5 +95,5 @@ work =
         to: 'youth'
         point: 'topright'
       popout:
-        offset: 350
+        offset: 353
         content: 'http://www.youtube.com/embed/iLg7Oddge1s'

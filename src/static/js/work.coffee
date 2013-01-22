@@ -66,11 +66,12 @@ class Popout
        e.preventDefault()
 
   show: (cfg) ->
-    return if @el.is(':visible')
+    return if @locked
     @background.fadeIn()
     @set_image(cfg.image, cfg.offset)
     @set_content(cfg.content)
-    @scroll_content => @el.fadeIn()
+    # Don't fade in if we already triggered a hide
+    @scroll_content => @el.fadeIn() if @locked
     @locked = true
 
   set_image: (image, offset) ->
@@ -80,7 +81,8 @@ class Popout
 
   set_content: (content) ->
     @el.find('iframe.content')
-      .attr(src: content)
+      # Transparent wmode parameter so that we can z-index over the video
+      .attr(src: "#{ content }?wmode=transparent")
 
   scroll_content: (next) ->
     # Anchor based on the bottom image's distance from the bottom of the window
@@ -90,8 +92,14 @@ class Popout
 
   hide: ->
     @locked = false
-    @background.fadeOut()
-    @el.fadeOut()
+    @background
+      .add(@el)
+      .stop(true)
+      .fadeOut =>
+        # Clear the video and image to stop background music and prevent flash
+        # of content when the next popup is triggered
+        @set_image('', 0)
+        @set_content('')
 
 $ ->
   tiles = {}
@@ -101,5 +109,4 @@ $ ->
     tiles[name].render()
 
   $(document).click ->
-    for name, tile of tiles
-      Popout.get().hide()
+    Popout.get().hide()
