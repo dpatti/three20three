@@ -106,11 +106,12 @@ class Popout
         @set_content('about:blank')
 
 $ ->
-  tiles = {}
-  for name, cfg of work.tiles
-    # Create tile
-    tiles[name] = new Tile name, tiles, _.extend(cfg, spacing: work.spacing)
-    tiles[name].render()
+  if $('#tiles').length
+    tiles = {}
+    for name, cfg of work.tiles
+      # Create tile
+      tiles[name] = new Tile name, tiles, _.extend(cfg, spacing: work.spacing)
+      tiles[name].render()
 
-  $(document).click ->
-    Popout.get().hide()
+    $(document).click ->
+      Popout.get().hide()
