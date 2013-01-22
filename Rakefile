@@ -96,8 +96,13 @@ task :templates do
   cd dir
   Dir[match].each do |template|
     puts "  #{ template }"
-    base = File.basename(template)
-    File.open "#{ path }/bin/#{ base }", "w+" do |f|
+    base = File.basename(template, '.html')
+    if base == 'index'
+      base = ''
+    end
+    out_dir = "#{ path }/bin/#{ base }"
+    mkpath out_dir
+    File.open "#{ out_dir }/index.html", "w+" do |f|
       f.write Mustache.render(File.read(template))
     end
   end
@@ -125,7 +130,9 @@ task :start_server do
   servlet = Class.new(WEBrick::HTTPServlet::AbstractServlet) do
     def do_GET(req, res)
       dir, file = File.split req.path
-      file = "index.html" if file == "/" or file == ""
+      if file =~ /^[^.]+$/
+        file = "#{ file }/index.html"
+      end
 
       case file
       when /(\.css|\.js)/
