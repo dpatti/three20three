@@ -10,7 +10,7 @@ work =
         to: ''
       popout:
         image: 'graphics+cinematography'
-        offset: 175
+        offset: 345
         content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     passion:
@@ -35,7 +35,7 @@ work =
         point: 'bottomleft'
       popout:
         image: 'graphics+cinematography'
-        offset: 175
+        offset: 345
         content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     tomlin:
