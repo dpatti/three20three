@@ -83,7 +83,7 @@ work =
         to: 'cathedral'
         point: 'topright'
       popout:
-        offset: 251
+        offset: 205
         content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
 
     field:
@@ -95,5 +95,5 @@ work =
         to: 'youth'
         point: 'topright'
       popout:
-        offset: 353
+        offset: 202
         content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
