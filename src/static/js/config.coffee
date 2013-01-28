@@ -1,3 +1,4 @@
+youtube = (id) -> "http://www.youtube.com/embed/#{ id }?wmode=opaque"
 work =
   spacing: 21
   tiles:
@@ -11,7 +12,7 @@ work =
       popout:
         image: 'graphics+cinematography'
         offset: 345
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube '5seNDgTseBw'
 
     passion:
       image: 'pittintro'
@@ -23,7 +24,7 @@ work =
         point: 'topright'
       popout:
         offset: 195
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'iLg7Oddge1s'
 
     graphics:
       image: 'graphics'
@@ -36,7 +37,7 @@ work =
       popout:
         image: 'graphics+cinematography'
         offset: 345
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'k94D77N0VJw'
 
     tomlin:
       image: 'tomlinshow'
@@ -48,7 +49,7 @@ work =
         point: 'topright'
       popout:
         offset: 190
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'op98zTa4apc'
 
     digest:
       image: 'digest'
@@ -60,7 +61,7 @@ work =
         point: 'topright'
       popout:
         offset: 200
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'Vm4pOGy--SM'
 
     cathedral:
       image: 'fieldpass-cathedral'
@@ -72,7 +73,7 @@ work =
         point: 'bottomleft'
       popout:
         offset: 190
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'LnaY05G6ImA'
 
     youth:
       image: 'youthfootball'
@@ -84,7 +85,7 @@ work =
         point: 'topright'
       popout:
         offset: 205
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'Bn4xMmhouhw'
 
     field:
       image: 'fieldpass2'
@@ -96,4 +97,4 @@ work =
         point: 'topright'
       popout:
         offset: 202
-        content: 'http://www.youtube.com/embed/iLg7Oddge1s?wmode=opaque'
+        content: youtube 'Aj4zmNBTwKU'
