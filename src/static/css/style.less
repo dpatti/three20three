@@ -14,6 +14,7 @@
 h1 {
   font-family: Georgia;
   font-size: 60px;
+  font-weight: normal;
 }
 
 h5 {
@@ -235,6 +236,78 @@ body {
     margin-top: 30px;
     .row img:first-child {
       margin-right: 11px;
+    }
+  }
+
+  #contact {
+    margin-top: 60px;
+
+    form {
+      background-color: rgba(0, 0, 0, 0.9);
+      display: block;
+      width: 750px;
+      margin: 0 auto;
+      text-align: left;
+      position: relative;
+      padding: 20px;
+      padding-bottom: 80px;
+
+      input[type=submit] {
+        position: absolute;
+        left: 50%;
+        bottom: -100px;
+        margin-left: -168px;
+        width: 337px;
+        height: 159px;
+        background: url(/static/images/contact/send.png);
+        cursor: pointer;
+        border: none;
+
+        &:hover {
+          background-image: url(/static/images/contact/send-rollover.png);
+        }
+      }
+
+      label {
+        vertical-align: top;
+        display: inline-block;
+        font-size: 32px;
+        padding-left: 115px;
+        margin-right: 60px;
+        width: 120px;
+      }
+
+      input, textarea, .slider {
+        width: 300px;
+        display: inline-block;
+        font-family: Arial, sans-serif;
+        font-size: 13px;
+        padding: 5px;
+        margin-bottom: 20px;
+
+        &.slider {
+          padding: 0 5px;
+          margin-top: 40px;
+          position: relative;
+
+          .marker {
+            padding: 5px;
+            background-color: #2a2930;
+            color: #fff;
+            position: absolute;
+            top: -35px;
+            left: -11px;
+            width: 30px;
+            border: none !important;
+            border-radius: 6px;
+            text-align: center;
+          }
+        }
+      }
+
+      textarea {
+        height: 100px;
+      }
     }
   }
 }
