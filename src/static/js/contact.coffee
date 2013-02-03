@@ -10,6 +10,17 @@ update = (range) ->
       .each ->
         $(this).text(money range.shift())
 
+transition = (text) ->
+  if $('.after').length > 0
+    return $('.after').html(text)
+
+  $('#contact form')
+    .slideUp ->
+      $('.after').slideDown()
+    .parent()
+    .append $('<div>', class: 'after')
+      .html(text)
+
 $ ->
   init_values = [5000, 20000]
 
@@ -27,3 +38,20 @@ $ ->
       .focus HTMLElement::blur
 
   update init_values
+
+  $('#contact form')
+    .submit (e) ->
+      e.preventDefault()
+      # Gather information
+      submission = _.extend
+        budget: $('.slider').slider('values')
+      , _.object _.map ['name', 'company', 'email', 'project'], (field) ->
+        [field, $("[name=#{ field }]").val()]
+
+      transition "Sending..."
+
+      $.post('/contact/submit', submission)
+        .done ->
+          transition "Thanks! We'll be in touch with you soon."
+        .fail ->
+          transition "An error has occured. Please email <a href='mailto:admin@three20three.com'>admin@three20three.com</a> to let us know."
