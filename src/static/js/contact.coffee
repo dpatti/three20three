@@ -1,5 +1,5 @@
 money = (amt) ->
-  if amt <= 1000
+  if amt < 1000
     "$#{ Math.round(amt) }"
   else
     "$#{ Math.round(amt/1000) }k"
