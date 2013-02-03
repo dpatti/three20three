@@ -39,7 +39,7 @@ $ ->
   # Hook links
   $('#header a').each ->
     href = $(this).attr('href')
-    unless 'http' in href
+    unless /^http/.test(href)
       $(this).click (e) =>
         e.preventDefault()
         navigator.to(href)
