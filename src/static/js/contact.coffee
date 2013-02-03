@@ -54,4 +54,4 @@ $ ->
         .done ->
           transition "Thanks! We'll be in touch with you soon."
         .fail ->
-          transition "An error has occured. Please email <a href='mailto:admin@three20three.com'>admin@three20three.com</a> to let us know."
+          transition "An error has occured. We've been notified, but feel free to email <a href='mailto:admin@three20three.com'>admin@three20three.com</a> to let us know."
