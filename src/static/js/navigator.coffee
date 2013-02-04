@@ -5,10 +5,22 @@ class Navigator
     @pages = []
 
     # Check current location
-    @show document.location.pathname
+    current = document.location.pathname
+    @show current
+
+    # Watch for history on pop
+    if history.pushState
+      history.replaceState page: current, "", current
+      $(window).bind 'popstate', (e) =>
+        page = history.state?.page
+        @show(page) if page?
 
   to: (page) ->
     @show page
+
+    # Alter history
+    if history.pushState
+      history.pushState {page}, "", page
 
   parse: (href) -> href.replace(/\W+/g, '').toLowerCase()
 
@@ -41,5 +53,7 @@ $ ->
     href = $(this).attr('href')
     unless /^http/.test(href)
       $(this).click (e) =>
+        # Let middle clicks open
+        return unless e.which == 1
         e.preventDefault()
         navigator.to(href)
