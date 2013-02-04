@@ -1,4 +1,8 @@
-:production:
+:development:
   :host: "spartoi.com"
   :user: "dpatti"
   :directory: "~/spartoi.com/323"
+:production:
+  :host: "323productions.com"
+  :user: "thrtwot3"
+  :directory: "~/public_html"

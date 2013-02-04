@@ -1,1 +1,3 @@
 bin
+config.yml
+src/email_config

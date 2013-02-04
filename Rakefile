@@ -19,7 +19,8 @@ task :setup_directory do
 
   symlinks.each do |path|
     if not File.symlink? "bin/#{ path }"
-      symlink "../../src/#{ path }", "bin/#{ path }"
+      root = "../" * (path.count('/') + 1)
+      symlink "#{root}src/#{ path }", "bin/#{ path }"
     end
   end
 end
@@ -113,15 +114,25 @@ task :templates do
   cd path
 end
 
-task :push => [:build, :minify_js, :rsync]
+namespace :push do
+  # This doesn't actually do anything yet
+  task :devel => [:build, :minify_js] do
+    Rake::Task[:rsync].execute :server => :development
+  end
 
-task :rsync do
+  task :prod => [:build, :minify_js] do
+    Rake::Task[:rsync].execute :server => :production
+  end
+end
+task :push => ['push:prod']
+
+task :rsync, [:server] do |t, args|
   require 'psych'
   config = Psych.load(File.read("config.yml"))
-  config = config[:production]
+  config = config[args[:server]]
 
-  puts "Pushing to production..."
-  puts `rsync -rL --delete bin/* "#{ config[:user] }@#{ config[:host] }:#{ config[:directory] }"`
+  puts "Pushing to #{ args[:server] }..."
+  puts `rsync -rL --delete bin/* bin/.htaccess "#{ config[:user] }@#{ config[:host] }:#{ config[:directory] }"`
 end
 
 task :serve => [:build, :start_server]
