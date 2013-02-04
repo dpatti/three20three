@@ -82,10 +82,10 @@ task :compile_js do
 end
 
 task :minify_js do
-  require 'jsmin'
+  require 'uglifier'
 
   puts "Minifying js..."
-  minified = JSMin.minify File.read(js_output)
+  minified = Uglifier.new.compile File.read(js_output)
   File.open js_output, "w+" do |f|
     f.write minified
   end
