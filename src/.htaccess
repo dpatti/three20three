@@ -1,10 +1,9 @@
 RewriteEngine On
 
-# Anything without a filename will just go to /, with the exception being /contact/submit
-RewriteCond %{REQUEST_URI} !\.
-RewriteCond %{REQUEST_METHOD} ^(HEAD|GET)$
-RewriteRule .+ /
+# Posting to contact will redirect to emailer
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^contact email.php [L]
 
-# Posting to contact however will not
-RewriteCond %{REQUEST_METHOD} ^POST$
-RewriteRule ^contact email.php
+# Anything else without an extension will just go to /
+RewriteCond %{REQUEST_URI} !\.
+RewriteRule .+ /
