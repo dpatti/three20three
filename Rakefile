@@ -8,15 +8,19 @@ js_files = "src/static/js/*.coffee"
 js_libraries = "src/static/js/lib/*.js"
 js_output = "bin/static/script.js"
 
+symlinks = ["static/images", ".htaccess", "email.php", "email_config"];
+
 task :default => [:build]
 
 task :build => [:setup_directory, :lazy_compile, :templates]
 
 task :setup_directory do
   mkpath "bin/static/"
-  # Link is relative to bin/static/
-  if not File.symlink? "bin/static/images"
-    symlink "../../src/static/images", "bin/static/images"
+
+  symlinks.each do |path|
+    if not File.symlink? "bin/#{ path }"
+      symlink "../../src/#{ path }", "bin/#{ path }"
+    end
   end
 end
 
